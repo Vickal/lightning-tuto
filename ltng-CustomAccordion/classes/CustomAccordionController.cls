@@ -1,3 +1,7 @@
+/***
+   @Author: Vickal Gupta
+   @Description: Get map of Account Name to Contact List.
+*/
 public class CustomAccordionController {
     
     @AuraEnabled
