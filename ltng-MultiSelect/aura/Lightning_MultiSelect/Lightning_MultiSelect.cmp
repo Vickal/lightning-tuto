@@ -1,0 +1,41 @@
+<!--
+ - Created by vickalgupta on 7/18/18.
+ -->
+
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" access="global">
+    <aura:attribute name="options" type="List"/>
+    <aura:attribute name="picklistLabel" type="String" default="Select Options"/>
+    <aura:attribute name="selectedPills" type="List"/>
+    <aura:attribute name="isAllSelected" type="Boolean" default="false"/>
+    <aura:attribute name="selectedOpt" type="String" default="Select an option"/>
+    <aura:attribute name="defaultSelected" type="String" default="Select an option"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds-form-element">
+        <lightning:select name="m-select" aura:id="sOpt" value="{!v.selectedOpt}" label="{!v.picklistLabel}" onchange="{!c.onOptionSelect}">
+            <option value="{!v.defaultSelected}">{!v.defaultSelected}</option>
+            <aura:iteration items="{!v.options}" var="option">
+                <option value="{!option}">{!option}</option>
+            </aura:iteration>
+        </lightning:select>
+    </div>
+
+    <div class="slds-m-top_small">
+        <aura:if isTrue="{!greaterthan(v.selectedPills.length,0)}">
+            <aura:iteration items="{!v.selectedPills}" var="pill">
+                <span class="slds-pill slds-pill_link" style="background-color: #16aae4; margin:1px 1px 1px 1px; ">
+                    <a href="javascript:void(0);" class="slds-pill__action" title="Full pill label verbiage mirrored here"
+                       style="color:white; border: none;">
+                        <span class="slds-pill__label" style="margin-left: 6px;">{!pill}</span>
+                    </a>
+                    <button class="slds-button slds-button_icon slds-button_icon slds-pill__remove" title="Remove"
+                            data-cnt="{!pill}" onclick="{!c.doRemovePills}">
+                            <lightning:icon aura:id="closePill" iconName="utility:close" size="small" lternativeText="remove"
+                                            variant="error"/>
+                    </button>
+                </span>
+            </aura:iteration>
+        </aura:if>
+    </div>
+</aura:component>
