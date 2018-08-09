@@ -1,3 +1,0 @@
-<aura:event type="APPLICATION" description="Expand All" >
-	<aura:attribute name="isExpanded" type="Boolean"></aura:attribute>
-</aura:event>
